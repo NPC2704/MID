@@ -9,14 +9,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-
-      title: {
+      work: {
         type: Sequelize.STRING,
       },
       comment: {
         type: Sequelize.STRING,
       },
       id_title: {
+        type: Sequelize.STRING,
+      },
+      status: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+      },
+      description: {
         type: Sequelize.STRING,
       },
       createdAt: {

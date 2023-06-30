@@ -5,13 +5,13 @@ import jwt from "jsonwebtoken";
 const salt = bcrypt.genSaltSync(5);
 const hashPassword = (password) =>
   bcrypt.hashSync(password, bcrypt.genSaltSync(5));
-export const register = ({ email, password }) =>
+export const register = ({ username, password }) =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await db.User.findOrCreate({
-        where: { email: email },
+        where: { username: username },
         defaults: {
-          email,
+          username,
           password: hashPassword(password),
         },
       });
@@ -20,7 +20,7 @@ export const register = ({ email, password }) =>
         ? jwt.sign(
             {
               id: response[0].id,
-              email: response[0].email,
+              username: response[0].username,
               role_code: response[0].role_code,
             },
             process.env.JWT_SECRET,
@@ -34,7 +34,7 @@ export const register = ({ email, password }) =>
       // kiem tra email da dc tao chua
       resolve({
         err: response[1] ? 0 : 1,
-        mes: response[1] ? "Register is successfully!" : "Email is used",
+        mes: response[1] ? "Register is successfully!" : "username is used",
         access_token: token ? `Bearer ${token}` : token,
       });
       resolve({
@@ -46,11 +46,11 @@ export const register = ({ email, password }) =>
     }
   });
 
-export const login = ({ email, password }) =>
+export const login = ({ username, password }) =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await db.User.findOne({
-        where: { email: email },
+        where: { username: username },
         raw: true,
       });
       // kiem tra mat kahu dung hay sai
@@ -61,7 +61,7 @@ export const login = ({ email, password }) =>
         ? jwt.sign(
             {
               id: response.id,
-              email: response.email,
+              username: response.username,
               role_code: response.role_code,
             },
             process.env.JWT_SECRET,
@@ -77,7 +77,7 @@ export const login = ({ email, password }) =>
           ? "Login is successfully!"
           : response
           ? "Password is wrong"
-          : "Email have been registerd",
+          : "username have been registerd",
         access_token: token ? `Bearer ${token}` : token,
       });
       resolve({

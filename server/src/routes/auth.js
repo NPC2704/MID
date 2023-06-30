@@ -6,4 +6,7 @@ const router = express.Router();
 
 router.post("/register", controller.register);
 router.post("/login", controller.login);
+router.post("/logout", (req, res) => {
+  res.status(200).json("Logout successful");
+});
 module.exports = router;

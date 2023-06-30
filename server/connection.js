@@ -1,10 +1,16 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("mid_todo", "root", null, {
-  host: "localhost",
-  dialect: "mysql",
-  logging: false,
-});
+const sequelize = new Sequelize(
+  "sql_phuoccong_in",
+  "sql_phuoccong_in",
+  "tHXhbjKPX2SdMbmX",
+  {
+    host: "vp.midvietnam.com",
+    port: "3308",
+    dialect: "mysql",
+    logging: false,
+  }
+);
 const connectionDatabase = async () => {
   try {
     await sequelize.authenticate();
