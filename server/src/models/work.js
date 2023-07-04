@@ -2,13 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Work extends Model {
-    static associate(models) {
-      // Work.belongsTo(models.Title, {
-      //   foreignKey: "id_title",
-      //   targetKey: "code",
-      //   as: "id_Title",
-      // });
-    }
+    static associate(models) {}
   }
   Work.init(
     {

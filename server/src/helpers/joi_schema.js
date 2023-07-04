@@ -12,3 +12,5 @@ export const bid = joi.number().required();
 export const id_title = joi.number().required(); // alphanum nghia la k chua ki tu dac biet
 export const comment = joi.string().required();
 export const bids = joi.number().required();
+export const cmt = joi.string().required();
+export const id_cmt = joi.number().required();

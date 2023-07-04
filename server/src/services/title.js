@@ -69,3 +69,43 @@ export const getTitle = async ({ ...query }) =>
       reject(error);
     }
   });
+// export const getTitle = async ({ ...query }) =>
+//   new Promise(async (resolve, reject) => {
+//     try {
+//       const queries = { raw: true, rest: true };
+//       console.log(1);
+//       const response = await db.Title.findAll({
+//         where: query,
+//         attributes: {
+//           exclude: ["code"],
+//         },
+//         include: [
+//           {
+//             model: db.Work,
+//             attributes: {
+//               exclude: ["createdAt", "updatedAt"],
+//             },
+//             as: "id_Title",
+//           },
+//         ],
+//       });
+
+//       // Gom nhóm dữ liệu theo title
+//       const groupedData = response.reduce((acc, item) => {
+//         if (acc[item.title]) {
+//           acc[item.title].push(item);
+//         } else {
+//           acc[item.title] = [item];
+//         }
+//         return acc;
+//       }, {});
+
+//       resolve({
+//         err: response ? 0 : 1,
+//         mes: response ? "Got" : "Cannot found titles",
+//         titleData: groupedData,
+//       });
+//     } catch (error) {
+//       reject(error);
+//     }
+//   });

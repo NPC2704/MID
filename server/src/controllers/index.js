@@ -1,4 +1,4 @@
 export * from "./auth";
-// export * from "./user";
+export * from "./comment";
 export * from "./work";
 export * from "./title";
